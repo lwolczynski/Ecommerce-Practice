@@ -1,20 +1,12 @@
 const express = require('express');
 const usersRepo = require('../../repositories/users');
+const signupTemplate = require('../../views/admin/auth/signup');
+const signinTemplate = require('../../views/admin/auth/signin');
 
 const router = express.Router();
 
 router.get('/signup', (req, res) => {
-    res.send(`
-        <div>
-            Your ID: ${req.session.userId}
-            <form method="POST">
-                <input name='email' placeholder='email'></input>
-                <input name='password' placeholder='password'></input>
-                <input name='passwordConfirmation' placeholder='password confirmation'></input>
-                <button>Sign Up</button>
-            </form>
-        </div>
-    `);
+    res.send(signupTemplate({ req }));
 });
 
 // WAY OF PARSING MANUALLY
@@ -63,15 +55,7 @@ router.post('/signup', async (req, res) => {
 });
 
 router.get('/signin', (req, res) => {
-    res.send(`
-        <div>
-            <form method="POST">
-                <input name='email' placeholder='email'></input>
-                <input name='password' placeholder='password'></input>
-                <button>Sign In</button>
-            </form>
-        </div>
-    `);
+    res.send(signinTemplate());
 });
 
 router.post('/signin', async (req, res) => {
