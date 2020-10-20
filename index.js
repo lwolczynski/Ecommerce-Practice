@@ -2,15 +2,18 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const authRouter = require('./routes/admin/auth');
+const productsRouter = require('./routes/admin/products');
+const { cookieKey } = require('./keys.js');
 
 const app = express();
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieSession({
-    keys: ['Sc&0fL=IeILBj~vockVyxyQ9P^G=E=']
+    keys: [cookieKey]
 }));
 app.use(authRouter);
+app.use(productsRouter);
 
 app.listen(3000, () => {
     console.log('Running!');
