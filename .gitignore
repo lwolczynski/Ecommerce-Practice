@@ -1,2 +1,6 @@
+.env
 node_modules
 keys.js
+users.json
+products.json
+carts.json

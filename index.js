@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
@@ -12,7 +13,8 @@ const app = express();
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieSession({
-    keys: [cookieKey]
+    // Remember to set enviromental variable COOKIE_KEY
+    keys: process.env.COOKIE_KEY
 }));
 app.use(authRouter);
 app.use(adminProductsRouter);
