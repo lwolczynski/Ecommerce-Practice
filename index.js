@@ -6,7 +6,6 @@ const authRouter = require('./routes/admin/auth');
 const adminProductsRouter = require('./routes/admin/products');
 const productsRouter = require('./routes/products');
 const cartsRouter = require('./routes/carts');
-const { cookieKey } = require('./keys.js');
 
 const app = express();
 
@@ -14,7 +13,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieSession({
     // Remember to set enviromental variable COOKIE_KEY
-    keys: process.env.COOKIE_KEY
+    keys: [process.env.COOKIE_KEY]
 }));
 app.use(authRouter);
 app.use(adminProductsRouter);
